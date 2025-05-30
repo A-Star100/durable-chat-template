@@ -4,7 +4,7 @@
     <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8" />
-    <title>Chat!</title>
+    <title>Durable Chat</title>
     <meta name="description" content="The ultimate chat room" />
     <meta name="author" content="Anirudh Sevugan (https://anirudhsevugan.me/)" />
 
@@ -31,7 +31,7 @@
 
   // Only prompt if we're on the homepage ("/")
   if (path === "/" || path === "") {
-    const roomId = prompt("Enter a room ID to join, or click Cancel to create a new one:");
+    const roomId = prompt("Enter a room ID to join (a new room will be created if it doesn't exist), or click Cancel to create a new one:");
     
     if (roomId && roomId.trim()) {
       // Redirect to the specified room
@@ -50,9 +50,7 @@
         <div class="one-third column" style="margin-top: 25%">
           <h4><b>Chat</b></h4>
           <p>
-            In the URL bar of your browser, you will see a link with an ID.
-            This link serves as a way to share your chat room with anyone you want to talk to!
-            You can change the ID to any name you like!
+            Chat with anyone, anywhere. Once you've finished creating/joining a room, you can share the link with anyone you want to chat with!
           </p>
         </div>
         <div class="two-thirds column" id="root"></div>
