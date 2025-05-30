@@ -146,49 +146,13 @@ const [nameInput, setNameInput] = useState("");
   
 }
 
-function RoomPrompt() {
-  const navigate = useNavigate();
-  const [roomInput, setRoomInput] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (roomInput.trim()) {
-      navigate(`/${encodeURIComponent(roomInput.trim())}`);
-    } else {
-      // Navigate to a new random room if no input
-      navigate(`/${nanoid()}`);
-    }
-  };
-
-  return (
-    <div className="modal-overlay">
-      <div className="modal">
-        <h2>Enter a Room ID</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={roomInput}
-            onChange={(e) => setRoomInput(e.target.value)}
-            placeholder="Room ID"
-            autoFocus
-          />
-          <button type="submit">Join Room</button>
-          <button type="button" onClick={() => navigate(`/${nanoid()}`)}>
-            Create New Room
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-}
-
 
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<RoomPrompt />} />
+      <Route path="/" element={<Navigate to={`/${nanoid()}`} />} />
       <Route path="/:room" element={<App />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
