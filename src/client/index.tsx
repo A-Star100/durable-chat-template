@@ -13,7 +13,8 @@ import { nanoid } from "nanoid";
 import { names, type ChatMessage, type Message } from "../shared";
 
 function App() {
-  const [name] = useState(names[Math.floor(Math.random() * names.length)]);
+const [name, setName] = useState<string | null>(null);
+const [nameInput, setNameInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const { room } = useParams();
 
@@ -70,54 +71,79 @@ function App() {
     },
   });
 
+
   return (
-    <div className="chat container">
-      {messages.map((message) => (
-        <div key={message.id} className="row message">
-          <div className="two columns user">{message.user}</div>
-          <div className="ten columns">{message.content}</div>
+  <>
+    {!name ? (
+      <div className="modal-overlay">
+        <div className="modal">
+          <h2>Enter your name</h2>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (nameInput.trim()) setName(nameInput.trim());
+            }}
+          >
+            <input
+              type="text"
+              value={nameInput}
+              onChange={(e) => setNameInput(e.target.value)}
+              placeholder="Your name"
+              autoFocus
+            />
+            <button type="submit">Join Chat</button>
+          </form>
         </div>
-      ))}
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          const content = e.currentTarget.elements.namedItem(
-            "content",
-          ) as HTMLInputElement;
-          const chatMessage: ChatMessage = {
-            id: nanoid(8),
-            content: content.value,
-            user: name,
-            role: "user",
-          };
-          setMessages((messages) => [...messages, chatMessage]);
-          // we could broadcast the message here
+      </div>
+    ) : (
+      <div className="chat container">
+        {messages.map((message) => (
+          <div key={message.id} className="row message">
+            <div className="two columns user">{message.user}</div>
+            <div className="ten columns">{message.content}</div>
+          </div>
+        ))}
+        <form
+          className="row"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const content = e.currentTarget.elements.namedItem(
+              "content",
+            ) as HTMLInputElement;
+            const chatMessage: ChatMessage = {
+              id: nanoid(8),
+              content: content.value,
+              user: name,
+              role: "user",
+            };
+            setMessages((messages) => [...messages, chatMessage]);
 
-          socket.send(
-            JSON.stringify({
-              type: "add",
-              ...chatMessage,
-            } satisfies Message),
-          );
+            socket.send(
+              JSON.stringify({
+                type: "add",
+                ...chatMessage,
+              } satisfies Message),
+            );
 
-          content.value = "";
-        }}
-      >
-        <input
-          type="text"
-          name="content"
-          className="ten columns my-input-text"
-          placeholder={`Hello ${name}! Type a message...`}
-          autoComplete="off"
-        />
-        <button type="submit" className="send-message two columns">
-          Send
-        </button>
-      </form>
-    </div>
-  );
-}
+            content.value = "";
+          }}
+        >
+          <input
+            type="text"
+            name="content"
+            className="ten columns my-input-text"
+            placeholder={`Hello ${name}! Type a message...`}
+            autoComplete="off"
+          />
+          <button type="submit" className="send-message two columns">
+            Send
+          </button>
+        </form>
+      </div>
+    )}
+  </>
+);
+
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 createRoot(document.getElementById("root")!).render(
