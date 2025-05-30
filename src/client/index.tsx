@@ -142,7 +142,8 @@ const [nameInput, setNameInput] = useState("");
       </div>
     )}
   </>
-});
+);
+}
 
 
 
