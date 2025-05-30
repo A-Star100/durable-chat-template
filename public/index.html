@@ -24,16 +24,25 @@
     <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="icon" type="image/ico" href="favicon.ico" />
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
     <script src="/dist/index.js" type="module"></script>
+    <script defer>
+      window.addEventListener("DOMContentLoaded", () => {
+  const path = window.location.pathname;
+
+  // Only prompt if we're on the homepage ("/")
+  if (path === "/" || path === "") {
+    const roomId = prompt("Enter a room ID to join, or click Cancel to create a new one:");
+    
+    if (roomId && roomId.trim()) {
+      // Redirect to the specified room
+      window.location.href = `/${encodeURIComponent(roomId.trim())}`;
+    }
+    // Else: Do nothing — your app will generate a new room as usual
+  }
+});
+    </script>
   </head>
   <body>
-
-  <div
-  class="cf-turnstile"
-  data-sitekey="0x4AAAAAABfKxL0lxk9zMUMS"
-  data-callback="javascriptCallback"
-  ></div>
     <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <div class="container" style="width: 95%; height: 100%">
