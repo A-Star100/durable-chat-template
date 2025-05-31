@@ -1,3 +1,4 @@
+/* Base styles (light mode by default) */
 body,
 html {
   height: 100%;
@@ -5,6 +6,8 @@ html {
   padding: 0;
   display: flex;
   flex-direction: column;
+  background: #fff;
+  color: #000;
 }
 
 .chat {
@@ -18,7 +21,6 @@ html {
   justify-content: flex-end;
   overflow-y: auto;
   height: 100%;
-  /* padding: 10px; */
 }
 
 .message {
@@ -35,11 +37,10 @@ html {
   width: 22px;
   height: 20px;
   left: -60px;
-  /* display: "block", */
   display: none;
   padding: 0;
   line-height: 18px;
-  border: "none";
+  border: none;
 }
 
 .send-message {
@@ -66,4 +67,36 @@ html {
   background: white;
   padding: 2rem;
   border-radius: 8px;
+  color: #000;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  body,
+  html {
+    background: #121212;
+    color: #e0e0e0;
+  }
+
+  .modal {
+    background: #1e1e1e;
+    color: #fff;
+  }
+
+  .my-input-text::placeholder {
+    color: #888;
+  }
+
+  .chat {
+    background: #121212;
+  }
+
+  .message .user {
+    color: #90caf9;
+  }
+
+  .send-message {
+    background: #333;
+    color: #fff;
+  }
 }
