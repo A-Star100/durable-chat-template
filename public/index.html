@@ -32,56 +32,41 @@
     const path = window.location.pathname;
 
     if (path === "/") {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
       const modal = document.createElement("div");
-      modal.innerHTML = `
+      modal.innerHTML = 
         <div style="
           position: fixed; top: 0; left: 0; width: 100%; height: 100%;
           background: rgba(0, 0, 0, 0.5); display: flex;
           align-items: center; justify-content: center; z-index: 1000;
         ">
           <div style="
-            background: ${prefersDark ? '#1e1e1e' : 'white'};
-            color: ${prefersDark ? '#f0f0f0' : '#000'};
-            padding: 2em; border-radius: 8px;
+            background: white; padding: 2em; border-radius: 8px;
             display: flex; flex-direction: column; gap: 1em;
             width: 300px;
           ">
             <h3>Join or Create Room</h3>
-            <input type="text" id="room-input" placeholder="Room ID..." style="
-              padding: 0.5em;
-              background: ${prefersDark ? '#333' : '#fff'};
-              color: ${prefersDark ? '#eee' : '#000'};
-              border: 1px solid ${prefersDark ? '#555' : '#ccc'};
-            " />
+            <input type="text" id="room-input" placeholder="Room ID..." style="padding: 0.5em;" />
             <div style="display: flex; justify-content: space-between;">
-              <button id="join-room" style="
-                background: ${prefersDark ? '#444' : '#eee'};
-                color: ${prefersDark ? '#fff' : '#000'};
-                border: none; padding: 0.5em 1em; border-radius: 4px;
-              ">Join</button>
-              <button id="new-room" style="
-                background: ${prefersDark ? '#666' : '#ddd'};
-                color: ${prefersDark ? '#fff' : '#000'};
-                border: none; padding: 0.5em 1em; border-radius: 4px;
-              ">New Room</button>
+              <button id="join-room">Join</button>
+              <button id="new-room">New Room</button>
             </div>
           </div>
         </div>
-      `;
+      ;
       document.body.appendChild(modal);
 
       modal.querySelector("#join-room").addEventListener("click", () => {
         const input = modal.querySelector("#room-input");
         const roomId = input.value.trim();
         if (roomId) {
-          window.location.href = `/${encodeURIComponent(roomId)}`;
+          window.location.href = /${encodeURIComponent(roomId)};
         }
+        console.log("Joined/created room")
       });
 
       modal.querySelector("#new-room").addEventListener("click", () => {
-        modal.remove(); // Let the app handle room generation
+        // Just remove the modal — let your app generate the new room
+        modal.remove();
       });
     }
   });
