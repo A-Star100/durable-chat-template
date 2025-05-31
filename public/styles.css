@@ -84,7 +84,11 @@ html {
   }
 
   .my-input-text::placeholder {
-    color: #888;
+    color: black;
+  }
+
+  .modal {
+    color: white;
   }
 
   .chat {
@@ -92,7 +96,7 @@ html {
   }
 
   .message .user {
-    color: #90caf9;
+    color: white;
   }
 
   .send-message {
