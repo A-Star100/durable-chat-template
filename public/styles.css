@@ -70,7 +70,7 @@ html {
   color: #000;
 }
 
-/* Dark mode styles */
+/* Dark mode styles
 @media (prefers-color-scheme: dark) {
   body,
   html {
@@ -104,3 +104,4 @@ html {
     color: black;
   }
 }
+*/
