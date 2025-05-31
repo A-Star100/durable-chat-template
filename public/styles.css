@@ -84,7 +84,7 @@ html {
   }
 
   .my-input-text::placeholder {
-    color: black;
+    color: #e0e0e0;
   }
 
   .modal {
@@ -101,6 +101,6 @@ html {
 
   .send-message {
     background: #333;
-    color: #fff;
+    color: black;
   }
 }
