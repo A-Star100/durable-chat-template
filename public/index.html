@@ -65,7 +65,8 @@
       });
 
       modal.querySelector("#new-room").addEventListener("click", () => {
-        console.log("Created new room")
+        // Just remove the modal — let your app generate the new room
+        modal.remove();
       });
     }
   });
