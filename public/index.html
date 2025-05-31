@@ -61,10 +61,11 @@
         if (roomId) {
           window.location.href = `/${encodeURIComponent(roomId)}`;
         }
+        console.log("Joined/created room")
       });
 
       modal.querySelector("#new-room").addEventListener("click", () => {
-        console.log("picked existing room")
+        console.log("Created new room")
       });
     }
   });
