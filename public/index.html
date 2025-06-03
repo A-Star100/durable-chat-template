@@ -76,6 +76,54 @@
   });
 </script>
 
+<script defer>
+  window.addEventListener("DOMContentLoaded", () => {
+    // Utility: Get cookie by name
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    // Utility: Set cookie with expiration
+    function setCookie(name, value, days) {
+      const d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = `expires=${d.toUTCString()}`;
+      document.cookie = `${name}=${value}; ${expires}; path=/`;
+    }
+
+    // Check if user is on Android
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    // If Android, and user hasn’t seen the prompt before
+    if (isAndroid && !getCookie("androidAppPromptShown")) {
+      // Set cookie to avoid showing again
+      setCookie("androidAppPromptShown", "true", 365);
+
+      // Show your custom message (modal, banner, toast, etc.)
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <div style="
+          position: fixed; bottom: 0; left: 0; right: 0;
+          background: #333; color: white; padding: 1em;
+          text-align: center; z-index: 9999;">
+          Get a better experience <a href="https://www.dropbox.com/scl/fi/abjkhr7wdpki74li360m5/DurableChat.apk?rlkey=qol6itxc58ada07ki2x8dqkmz&st=gp6izfxf&dl=1" style="color: #00ffcc; text-decoration: underline;">with our Android app</a>!
+          <div style="height:4px;"></div>
+          <em>You'll need to <a href="https://www.howtogeek.com/313433/how-to-sideload-apps-on-android/">sideload the app</a> onto your device.
+          You don't have to if you don't want to</em>
+          <button onclick="this.parentElement.remove()" style="
+            margin-left: 1em; background: transparent; border: none; color: white; cursor: pointer;">
+            Never mind
+          </button>
+        </div>
+      `;
+      document.body.appendChild(div);
+    }
+  });
+</script>
+
+
   </head>
   <body>
     <!-- Primary Page Layout
