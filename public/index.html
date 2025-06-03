@@ -55,18 +55,28 @@
       `;
       document.body.appendChild(modal);
 
+      function displayRoomName() {
+            const roomName = window.location.pathname.slice(1); // removes the leading "/"
+    const roomNameLabel = document.getElementById("roomName");
+    if (roomNameLabel && roomName) {
+      roomNameLabel.innerText = `Room: ${roomName}`;
+    }
+      }
+
       modal.querySelector("#join-room").addEventListener("click", () => {
         const input = modal.querySelector("#room-input");
         const roomId = input.value.trim();
         if (roomId) {
           window.location.href = `/${encodeURIComponent(roomId)}`;
         }
+        displayRoomName();
         console.log("Joined/created room")
       });
 
       modal.querySelector("#new-room").addEventListener("click", () => {
         // Just remove the modal — let your app generate the new room
         modal.remove();
+        displayRoomName();
       });
     }
            if (window.AppInventor && window.AppInventor.setWebViewString) {
@@ -120,16 +130,6 @@
         </div>
       `;
       document.body.appendChild(div);
-    }
-  });
-</script>
-
-<script defer>
-  window.addEventListener("DOMContentLoaded", () => {
-    const roomName = window.location.pathname.slice(1); // removes the leading "/"
-    const roomNameLabel = document.getElementById("roomName");
-    if (roomNameLabel && roomName) {
-      roomNameLabel.innerText = `Room: ${roomName}`;
     }
   });
 </script>
