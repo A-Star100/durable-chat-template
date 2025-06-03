@@ -51,6 +51,10 @@ html {
   color: #ccc;
 }
 
+.gap {
+  height: 6px;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
