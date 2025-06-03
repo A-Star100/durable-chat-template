@@ -125,10 +125,15 @@
 </script>
 
 <script defer>
-  const roomName = window.location.pathname.slice(1); // removes the leading "/"
-  const roomNameLabel = document.getElementById("roomName");
-  roomNameLabel.innerText = `Room: ${roomName}`;
+  window.addEventListener("DOMContentLoaded", () => {
+    const roomName = window.location.pathname.slice(1); // removes the leading "/"
+    const roomNameLabel = document.getElementById("roomName");
+    if (roomNameLabel && roomName) {
+      roomNameLabel.innerText = `Room: ${roomName}`;
+    }
+  });
 </script>
+
 
 
   </head>
