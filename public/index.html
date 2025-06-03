@@ -85,12 +85,17 @@
             <div class="gap"></div>
             <button id="join-room" onclick="copyLink()">Share</button>
             <script>
-                function copyLink() {
-                    const url = window.location.href;
-                    navigator.clipboard.writeText(url)
-                    .then(() => alert("Copied to clipboard"))
-                    .catch(err => console.error("Failed to copy: ", err));
-                  }
+                      function copyLink() {
+                      if (window.AppInventor && window.AppInventor.setWebViewString) {
+                        // Tell App Inventor to open native share sheet
+                        window.AppInventor.setWebViewString("share");
+                      } else {
+                        const url = window.location.href;
+                          navigator.clipboard.writeText(url)
+                          .then(() => alert("Copied to clipboard"))
+                        .catch(err => console.error("Failed to copy: ", err));
+                      }
+                    }
             </script>
           </p>
         </div>
