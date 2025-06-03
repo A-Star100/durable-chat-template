@@ -96,10 +96,12 @@
     width: 300px; text-align: center;
   ">
     <h3>Copied to clipboard!</h3>
+    <div class="gap"></div>
+    <button id="join-room" onclick="closeDialog()">Share</button>
   </div>
 </div>
             <script>
-                      function copyLink() {
+function copyLink() {
   if (window.AppInventor && window.AppInventor.setWebViewString) {
     // Tell App Inventor to open native share sheet
     window.AppInventor.setWebViewString("share");
@@ -109,11 +111,15 @@
       .then(() => {
         const dialog = document.getElementById('copy-dialog');
         dialog.style.display = 'flex'; // Show the dialog
-        setTimeout(() => {
-          dialog.style.display = 'none'; // Hide after 2 seconds
-        }, 2000);
       })
       .catch(err => console.error("Failed to copy: ", err));
+  }
+}
+
+function closeDialog() {
+  const dialog = document.getElementById('copy-dialog');
+  if (dialog) {
+    dialog.style.display = 'none'; // Hide the dialog
   }
 }
 
