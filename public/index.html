@@ -84,18 +84,39 @@
             Chat with anyone, anywhere. Once you've finished creating/joining a room, you can share the link with anyone you want to chat with!
             <div class="gap"></div>
             <button id="join-room" onclick="copyLink()">Share</button>
+          <!-- Copied to Clipboard Dialog -->
+<div id="copy-dialog" style="
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5); display: none;
+  align-items: center; justify-content: center; z-index: 1000;
+">
+  <div style="
+    background: white; padding: 2em; border-radius: 8px;
+    display: flex; flex-direction: column; gap: 1em;
+    width: 300px; text-align: center;
+  ">
+    <h3>Copied to clipboard!</h3>
+  </div>
+</div>
             <script>
                       function copyLink() {
-                      if (window.AppInventor && window.AppInventor.setWebViewString) {
-                        // Tell App Inventor to open native share sheet
-                        window.AppInventor.setWebViewString("share");
-                      } else {
-                        const url = window.location.href;
-                          navigator.clipboard.writeText(url)
-                          .then(() => alert("Copied to clipboard"))
-                        .catch(err => console.error("Failed to copy: ", err));
-                      }
-                    }
+  if (window.AppInventor && window.AppInventor.setWebViewString) {
+    // Tell App Inventor to open native share sheet
+    window.AppInventor.setWebViewString("share");
+  } else {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url)
+      .then(() => {
+        const dialog = document.getElementById('copy-dialog');
+        dialog.style.display = 'flex'; // Show the dialog
+        setTimeout(() => {
+          dialog.style.display = 'none'; // Hide after 2 seconds
+        }, 2000);
+      })
+      .catch(err => console.error("Failed to copy: ", err));
+  }
+}
+
             </script>
           </p>
         </div>
