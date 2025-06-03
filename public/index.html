@@ -124,6 +124,12 @@
   });
 </script>
 
+<script defer>
+  const roomName = window.location.pathname.slice(1); // removes the leading "/"
+  const roomNameLabel = document.getElementById("roomName");
+  roomNameLabel.innerText = `Room: ${roomName}`;
+</script>
+
 
   </head>
   <body>
@@ -136,6 +142,7 @@
           <p>
             Chat with anyone, anywhere. Once you've finished creating/joining a room, you can share the link with anyone you want to chat with!
             <div class="gap"></div>
+          <b id="roomName">Room:</b>
 <div style="display: flex; gap: 1em;">
   <button id="join-room" onclick="copyLink()">Share</button>
   <button id="join-room" style="display:none;" class="reload-appinventor" onclick="reload();">Reload</button>
