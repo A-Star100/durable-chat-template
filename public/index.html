@@ -30,6 +30,16 @@
 <script defer>
   window.addEventListener("DOMContentLoaded", () => {
     const path = window.location.pathname;
+          function displayRoomName() {
+            const roomName = window.location.pathname.slice(1); // removes the leading "/"
+    const roomNameLabel = document.getElementById("roomName");
+    if (roomNameLabel && roomName) {
+      roomNameLabel.innerText = `Room: ${roomName}`;
+    }
+      }
+
+            displayRoomName();
+
 
     if (path === "/") {
       const modal = document.createElement("div");
@@ -54,14 +64,6 @@
         </div>
       `;
       document.body.appendChild(modal);
-
-      function displayRoomName() {
-            const roomName = window.location.pathname.slice(1); // removes the leading "/"
-    const roomNameLabel = document.getElementById("roomName");
-    if (roomNameLabel && roomName) {
-      roomNameLabel.innerText = `Room: ${roomName}`;
-    }
-      }
 
       modal.querySelector("#join-room").addEventListener("click", () => {
         const input = modal.querySelector("#room-input");
