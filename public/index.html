@@ -31,7 +31,7 @@
   window.addEventListener("DOMContentLoaded", () => {
     const path = window.location.pathname;
           function displayRoomName() {
-            const roomName = window.location.pathname.slice(1); // removes the leading "/"
+            const roomName = decodeURIComponent(window.location.pathname.slice(1)); // removes the leading "/"
     const roomNameLabel = document.getElementById("roomName");
     if (roomNameLabel && roomName) {
       roomNameLabel.innerText = `Room: ${roomName}`;
