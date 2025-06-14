@@ -25,10 +25,10 @@ export class Chat extends Server<Env> {
       `CREATE TABLE IF NOT EXISTS messages (id TEXT PRIMARY KEY, user TEXT, role TEXT, content TEXT)`,
     );
 
-    /* This is dangerous!!!! It clears all messages! With great power comes great responsibility. Only use when needed
+    // This is dangerous!!!! It clears all messages! With great power comes great responsibility. Only use when needed
   this.ctx.storage.sql.exec(`DELETE FROM messages`);
   this.messages = [];
-    */
+    //
 
     // load the messages from the database
     this.messages = this.ctx.storage.sql
