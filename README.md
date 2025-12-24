@@ -2,7 +2,7 @@
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/durable-chat-template)
 
-[**Get Android app**](https://www.dropbox.com/scl/fi/abjkhr7wdpki74li360m5/DurableChat.apk?rlkey=qol6itxc58ada07ki2x8dqkmz&st=bxy0w9sw&dl=1)
+[**Get Android app if you want to I guess**](https://www.dropbox.com/scl/fi/abjkhr7wdpki74li360m5/DurableChat.apk?rlkey=qol6itxc58ada07ki2x8dqkmz&st=bxy0w9sw&dl=1)
 
 ![Template Preview](https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/da00d330-9a3b-40a2-e6df-b08813fb7200/public)
 
